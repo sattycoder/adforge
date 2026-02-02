@@ -1079,12 +1079,12 @@ export async function renderPageWithContext({ context, url, device, userEmail, o
 
       // 8c. Divs with IDs containing ad position keywords
       const adPositionDivs = Array.from(
-        document.querySelectorAll('div[id*="adBanner"], div[id*="adBanner_"], div[id*="topAd"], div[id*="rightAd"], div[id*="leftAd"], div[id="iqdClickOverlay"], div[id="iqdSkyContainer"]')
+        document.querySelectorAll('div[id*="adBanner"], div[id*="adBanner_"], div[id*="topAd"], div[id*="rightAd"], div[id*="leftAd"], div[id="iqdSkyContainer"]')
       );
       
       adPositionDivs.forEach((div, i) => {
         addAdElement(div, 'div-ad-position', `ad-position-${adCounter++}`,
-          (el, counter) => el.id ? `#${el.id}` : `div[id*="adBanner"], div[id*="adBanner_"], div[id*="topAd"], div[id*="rightAd"], div[id*="leftAd"], div[id="iqdClickOverlay"], div[id="iqdSkyContainer"]:nth-of-type(${i + 1})`)
+          (el, counter) => el.id ? `#${el.id}` : `div[id*="adBanner"], div[id*="adBanner_"], div[id*="topAd"], div[id*="rightAd"], div[id*="leftAd"], div[id="iqdSkyContainer"]:nth-of-type(${i + 1})`)
       });
 
       // 9. ContainerSize_728X90
