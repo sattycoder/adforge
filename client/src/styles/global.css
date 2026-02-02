@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-gray-100 text-gray-900;
+}
+
+/* Utility helpers */
+.card {
+  @apply bg-white rounded-lg shadow p-4;
+}
+
+/* Hide scrollbar completely while maintaining scroll functionality */
+.viewport {
+  /* Firefox - hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE and Edge */
+  overflow-x: hidden;
+}
+
+.viewport::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera - hide scrollbar */
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+

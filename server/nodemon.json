@@ -1,0 +1,11 @@
+{
+  "watch": ["src"],
+  "ext": "js,json",
+  "ignore": [
+    "public/**",
+    "../client/dist/**"
+  ]
+}
+
+
+

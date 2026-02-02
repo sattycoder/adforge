@@ -1,0 +1,6 @@
+[submodule "client"]
+	path = client
+	url = https://github.com/THE-MARCOM-ENGINE/ad-preview-screenshot-fe.git
+[submodule "server"]
+	path = server
+	url = https://github.com/THE-MARCOM-ENGINE/ad-preview-screenshot-be.git

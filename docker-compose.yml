@@ -1,0 +1,60 @@
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: ad-maker-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  server:
+    build:
+      context: ./server
+    container_name: ad-maker-server
+    ports:
+      - "5050:5000"
+    env_file:
+      - ./server/.env
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./server/src:/app/src:ro
+      - ./server/src/utils:/app/src/utils:ro
+      - server_uploads:/app/uploads
+      - server_screenshots:/app/screenshots
+    # Ensure a simple restart policy
+    restart: unless-stopped
+
+  client:
+    build:
+      context: ./client
+    container_name: ad-maker-client
+    ports:
+      - "3030:3000"
+    env_file:
+      - ./client/.env
+    depends_on:
+      - server
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    restart: unless-stopped
+
+volumes:
+  server_uploads:
+  server_screenshots:
+  redis_data:
+
+
